@@ -3,14 +3,16 @@ import { Schema } from "mongoose";
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  last_name: { type: String, required: true },
+  last_name: { type: String, 
+   // required: true 
+  },
   dni: {
     type: String,
     //required: false,
     trim: true,
-    unique: true,
+    //unique: true,
     lowercase: true,
-    index: { unique: true },
+    //index: { unique: true },
   },
   telf: {
     type: String, //required: true
@@ -48,5 +50,26 @@ const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now, require: true },
 });
 
+const UsuarioSchema = new Schema({
+  cedula: { type: String },
+  nombres: { type: String, required: true },
+  telefono: { type: String, required: true },
+  rol_user: { type: Schema.Types.ObjectId, ref: "rol_user", required: true },
+  correo: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  password_temp: { type: String },
+  foto: { type: String },
+  estado: { type: String, default: "On" },
+  googleId: {
+    type: String,
+    default: null,
+  },
+  facebookId: {
+    type: String,
+    default: null,
+  },
+  createdAt: { type: Date, default: Date.now, require: true },
+});
+
 // Exportar el modelo de role
-export default userSchema;
+export { userSchema, UsuarioSchema };

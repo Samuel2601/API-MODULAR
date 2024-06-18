@@ -27,7 +27,10 @@ import * as passportSetupF from "./userModule/config/facebook.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import * as swaggerUi from "swagger-ui-express";
 import { swaggerOptions } from "./swagger/configswagger.js";
-
+import { permiso, roles, usuarios } from "./traspaso.js";
+roles();
+usuarios();
+permiso();
 const app = express();
 
 // Configuración de sesión
