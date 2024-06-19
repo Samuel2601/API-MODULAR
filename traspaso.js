@@ -17,7 +17,7 @@ const permiso = async () => {
     }
 
     console.log(
-      `Migración de permisos completada exitosamente. Se traspasaron ${contador} registros.`
+      `Migración de permisos completada exitosamente. Se modificaron ${contador} registros.`
     );
   } catch (error) {
     console.error(error);
@@ -47,9 +47,9 @@ const roles = async () => {
         await rolNuevo.save();
         contador++; // Incrementar el contador
       } else {
-        console.log(
+        /*console.log(
           `El rol con _id: ${rol._id} ya existe en el nuevo esquema.`
-        );
+        );*/
       }
     }
 
@@ -70,10 +70,11 @@ const usuarios = async () => {
 
     // Iterar sobre cada usuario y crear un nuevo registro si no existe
     for (const usuario of usuariosAntiguos) {
-      // Verificar si el registro ya existe en el nuevo esquema
-      const usuarioExistente = await Model.User.findById(usuario._id);
+      // Verificar si el registro ya existe en el nuevo esquema por _id o email
+      const usuarioExistentePorId = await Model.User.findById(usuario._id);
+      const usuarioExistentePorEmail = await Model.User.findOne({ email: usuario.correo });
 
-      if (!usuarioExistente) {
+      if (!usuarioExistentePorId && !usuarioExistentePorEmail) {
         let nombresArray = usuario.nombres.split(" ");
         let name = "";
         let last_name = "";
@@ -116,9 +117,15 @@ const usuarios = async () => {
         await usuarioNuevo.save();
         contador++; // Incrementar el contador
       } else {
-        console.log(
-          `El usuario con _id: ${usuario._id} ya existe en el nuevo esquema.`
-        );
+        if (usuarioExistentePorId) {
+          console.log(
+            `El usuario con _id: ${usuario._id} ya existe en el nuevo esquema.`
+          );
+        } else {
+          console.log(
+            `El usuario con email: ${usuario.correo} ya existe en el nuevo esquema.`
+          );
+        }
       }
     }
 
@@ -129,5 +136,6 @@ const usuarios = async () => {
     console.error(error);
   }
 };
+
 
 export { usuarios, roles, permiso };

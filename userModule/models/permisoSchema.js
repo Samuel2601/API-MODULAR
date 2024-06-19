@@ -8,14 +8,14 @@ const permisoSchema = new Schema({
     required: true,
     unique: true,
   },
-   //se va nombreComponente
-  nombreComponente: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+
   user: [{ type: Schema.Types.ObjectId, ref: "user" }],
   createdAt: { type: Date, default: Date.now, require: true },
+  //se va nombreComponente
+  nombreComponente: {
+    type: String,
+    unique: true,
+  },
   //se va rolesPermitidos
   rolesPermitidos: [
     {
