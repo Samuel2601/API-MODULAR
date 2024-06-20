@@ -27,10 +27,12 @@ import * as passportSetupF from "./userModule/config/facebook.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import * as swaggerUi from "swagger-ui-express";
 import { swaggerOptions } from "./swagger/configswagger.js";
-import { permiso, roles, usuarios } from "./traspaso.js";
+import { permiso, roles, usuarios } from "./apiservices/traspaso.js";
+import labella from "./labellaModule/routes/export.js";
+
 roles();
 usuarios();
-permiso();
+//permiso();
 const app = express();
 
 // Configuración de sesión
@@ -42,6 +44,7 @@ app.use(express.json());
 app.use("/api/v1", userRoute);
 app.use("/api/v1", roleRoute);
 app.use("/api/v1", permisoRoute);
+app.use("/api",labella);
 app.use("", google);
 app.use("", facebook);
 app.use("", contact);

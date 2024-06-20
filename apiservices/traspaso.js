@@ -1,4 +1,4 @@
-import { Model } from "./userModule/models/exporSchema.js";
+import { Model } from "../userModule/models/exporSchema.js";
 const permiso = async () => {
   try {
     let contador = 0; // Contador para los registros traspasados
@@ -118,9 +118,9 @@ const usuarios = async () => {
         contador++; // Incrementar el contador
       } else {
         if (usuarioExistentePorId) {
-          console.log(
+          /*console.log(
             `El usuario con _id: ${usuario._id} ya existe en el nuevo esquema.`
-          );
+          );*/
         } else {
           console.log(
             `El usuario con email: ${usuario.correo} ya existe en el nuevo esquema.`

@@ -14,7 +14,6 @@ const permisoSchema = new Schema({
   //se va nombreComponente
   nombreComponente: {
     type: String,
-    unique: true,
   },
   //se va rolesPermitidos
   rolesPermitidos: [
