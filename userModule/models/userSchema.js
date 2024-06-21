@@ -3,8 +3,9 @@ import { Schema } from "mongoose";
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  last_name: { type: String, 
-   // required: true 
+  last_name: {
+    type: String,
+    // required: true
   },
   dni: {
     type: String,
@@ -48,6 +49,7 @@ const userSchema = new Schema({
     type: String,
   },
   createdAt: { type: Date, default: Date.now, require: true },
+  password_temp: { type: String },
 });
 
 const UsuarioSchema = new Schema({

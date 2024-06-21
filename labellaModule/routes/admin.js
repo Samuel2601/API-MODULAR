@@ -3,9 +3,9 @@
 import express from 'express';
 import Controller from '../controllers/AdminController.js';
 
-import { auth } from '../middlewares/authenticate.js';
 import multiparty from 'connect-multiparty';
 import { getCiudadano } from '../../apiservices/sinardap.js';
+import { auth } from '../../middlewares/validationResultExpress.js';
 
 const path = multiparty({ uploadDir: './uploads/instituciones' });
 const admin = express.Router();
@@ -15,7 +15,6 @@ admin.get('/obtener_portada_ficha/:img', Controller.obtener_portada_ficha);
 admin.get('/obtener_portada_barrio/:img', Controller.obtener_portada_barrio);
 admin.post('/newpassword', auth, Controller.newpassword);
 admin.post('/forgotpassword', Controller.forgotpassword);
-admin.post('/login_admin', Controller.login_admin);
 admin.get('/listar_registro', auth, Controller.listar_registro);
 admin.get('/verificar_token', auth, Controller.verificar_token);
 admin.get('/verificarcorreo/:id', Controller.verificarCorreo);

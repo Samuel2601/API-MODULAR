@@ -25,12 +25,10 @@ const actualizarUsuario = async function (req, res) {
               data,
               { new: true }
             );
-            res
-              .status(200)
-              .send({
-                message: "Usuario actualizado correctamente",
-                data: usuarioActualizado,
-              });
+            res.status(200).send({
+              message: "Usuario actualizado correctamente",
+              data: usuarioActualizado,
+            });
           }
         });
       } else {
@@ -40,12 +38,10 @@ const actualizarUsuario = async function (req, res) {
           data,
           { new: true }
         );
-        res
-          .status(200)
-          .send({
-            message: "Usuario actualizado correctamente",
-            data: usuarioActualizado,
-          });
+        res.status(200).send({
+          message: "Usuario actualizado correctamente",
+          data: usuarioActualizado,
+        });
       }
     } catch (error) {
       console.error(error);
@@ -76,12 +72,10 @@ const actualizarActividadProyecto = async function (req, res) {
           .send({ message: "Ficha Sectorial no encontrada" });
       }
 
-      res
-        .status(200)
-        .send({
-          message: "Ficha Sectorial actualizada correctamente",
-          data: actividadActualizada,
-        });
+      res.status(200).send({
+        message: "Ficha Sectorial actualizada correctamente",
+        data: actividadActualizada,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -120,12 +114,10 @@ const actualizarIncidenteDenuncia = async function (req, res) {
           { $inc: { __v: 1 }, ...req.body },
           { new: true }
         );
-      res
-        .status(200)
-        .send({
-          message: "Incidente/denuncia actualizado correctamente",
-          data: incidenteActualizado,
-        });
+      res.status(200).send({
+        message: "Incidente/denuncia actualizado correctamente",
+        data: incidenteActualizado,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -147,12 +139,10 @@ const actualizarCategoria = async function (req, res) {
         req.body,
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          message: "Categoría actualizada correctamente",
-          data: categoriaActualizada,
-        });
+      res.status(200).send({
+        message: "Categoría actualizada correctamente",
+        data: categoriaActualizada,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -171,12 +161,10 @@ const actualizarSubcategoria = async function (req, res) {
     try {
       const subcategoriaActualizada =
         await Model.Subcategoria.findByIdAndUpdate(id, req.body, { new: true });
-      res
-        .status(200)
-        .send({
-          message: "Subcategoría actualizada correctamente",
-          data: subcategoriaActualizada,
-        });
+      res.status(200).send({
+        message: "Subcategoría actualizada correctamente",
+        data: subcategoriaActualizada,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -197,20 +185,16 @@ const actualizarEncargadoCategoria = async function (req, res) {
         await Model.Encargado_categoria.findByIdAndUpdate(id, req.body, {
           new: true,
         });
-      res
-        .status(200)
-        .send({
-          message: "Encargado de categoría actualizado correctamente",
-          data: encargadoActualizado,
-        });
+      res.status(200).send({
+        message: "Encargado de categoría actualizado correctamente",
+        data: encargadoActualizado,
+      });
     } catch (error) {
       console.error(error);
-      res
-        .status(500)
-        .send({
-          message: "Error al actualizar el encargado de categoría",
-          error,
-        });
+      res.status(500).send({
+        message: "Error al actualizar el encargado de categoría",
+        error,
+      });
     }
   } else {
     res.status(500).send({ message: "Acceso no permitido" });
@@ -227,12 +211,10 @@ const actualizarRolUsuario = async function (req, res) {
         req.body,
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          message: "Rol de usuario actualizado correctamente",
-          data: rolActualizado,
-        });
+      res.status(200).send({
+        message: "Rol de usuario actualizado correctamente",
+        data: rolActualizado,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -254,12 +236,10 @@ const actualizarPermiso = async function (req, res) {
         req.body,
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          message: "Permiso actualizado correctamente",
-          data: permisoActualizado,
-        });
+      res.status(200).send({
+        message: "Permiso actualizado correctamente",
+        data: permisoActualizado,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -281,12 +261,10 @@ const actualizarEstadoIncidente = async function (req, res) {
         req.body,
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          message: "Estado de incidente actualizado correctamente",
-          data: estadoActualizado,
-        });
+      res.status(200).send({
+        message: "Estado de incidente actualizado correctamente",
+        data: estadoActualizado,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -307,20 +285,16 @@ const actualizarEstadoActividadProyecto = async function (req, res) {
         await Model.Estado_actividad_proyecto.findByIdAndUpdate(id, req.body, {
           new: true,
         });
-      res
-        .status(200)
-        .send({
-          message: "Estado de actividad de proyecto actualizado correctamente",
-          data: estadoActualizado,
-        });
+      res.status(200).send({
+        message: "Estado de actividad de proyecto actualizado correctamente",
+        data: estadoActualizado,
+      });
     } catch (error) {
       console.error(error);
-      res
-        .status(500)
-        .send({
-          message: "Error al actualizar el estado de actividad de proyecto",
-          error,
-        });
+      res.status(500).send({
+        message: "Error al actualizar el estado de actividad de proyecto",
+        error,
+      });
     }
   } else {
     res.status(500).send({ message: "Acceso no permitido" });
@@ -336,20 +310,16 @@ const actualizarTipoActividadProyecto = async function (req, res) {
         await Model.Tipo_actividad_proyecto.findByIdAndUpdate(id, req.body, {
           new: true,
         });
-      res
-        .status(200)
-        .send({
-          message: "Tipo de actividad de proyecto actualizado correctamente",
-          data: tipoActualizado,
-        });
+      res.status(200).send({
+        message: "Tipo de actividad de proyecto actualizado correctamente",
+        data: tipoActualizado,
+      });
     } catch (error) {
       console.error(error);
-      res
-        .status(500)
-        .send({
-          message: "Error al actualizar el tipo de actividad de proyecto",
-          error,
-        });
+      res.status(500).send({
+        message: "Error al actualizar el tipo de actividad de proyecto",
+        error,
+      });
     }
   } else {
     res.status(500).send({ message: "Acceso no permitido" });
@@ -366,12 +336,10 @@ const actualizarTipoMedida = async function (req, res) {
         req.body,
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          message: "Tipo de medida actualizado correctamente",
-          data: tipoActualizado,
-        });
+      res.status(200).send({
+        message: "Tipo de medida actualizado correctamente",
+        data: tipoActualizado,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -385,32 +353,47 @@ const actualizarTipoMedida = async function (req, res) {
 
 // Función para actualizar una dirección geográfica por su ID
 const actualizarDireccionGeo = async function (req, res) {
-    if (req.user) {
-        var id = req.params['id'];
-        try {
-            let direccionActualizada = await Model.Direccion_geo.findByIdAndUpdate(id, req.body, { new: true });
-            res.status(200).send({ message: 'Dirección geográfica actualizada correctamente', data: direccionActualizada });
-        } catch (error) { console.error(error)
-            res.status(500).send({ message: 'Error al actualizar la dirección geográfica', error: error });
-        }
-    } else {
-        res.status(500).send({ message: 'Acceso no permitido' });
+  if (req.user) {
+    var id = req.params["id"];
+    try {
+      let direccionActualizada = await Model.Direccion_geo.findByIdAndUpdate(
+        id,
+        req.body,
+        { new: true }
+      );
+      res
+        .status(200)
+        .send({
+          message: "Dirección geográfica actualizada correctamente",
+          data: direccionActualizada,
+        });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({
+          message: "Error al actualizar la dirección geográfica",
+          error: error,
+        });
     }
+  } else {
+    res.status(500).send({ message: "Acceso no permitido" });
+  }
 };
 const Controller = {
-    actualizarActividadProyecto,
-    actualizarCategoria,
-    actualizarEncargadoCategoria,
-    actualizarEstadoActividadProyecto,
-    actualizarEstadoIncidente,
-    actualizarIncidenteDenuncia,
-    actualizarPermiso,
-    actualizarRolUsuario,
-    actualizarSubcategoria,
-    actualizarTipoActividadProyecto,
-    actualizarTipoMedida,
-    actualizarUsuario,    
-    actualizarDireccionGeo
-  };
-  
-  export default Controller;
+  actualizarActividadProyecto,
+  actualizarCategoria,
+  actualizarEncargadoCategoria,
+  actualizarEstadoActividadProyecto,
+  actualizarEstadoIncidente,
+  actualizarIncidenteDenuncia,
+  actualizarPermiso,
+  actualizarRolUsuario,
+  actualizarSubcategoria,
+  actualizarTipoActividadProyecto,
+  actualizarTipoMedida,
+  actualizarUsuario,
+  actualizarDireccionGeo,
+};
+
+export default Controller;

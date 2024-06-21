@@ -1,5 +1,5 @@
 import express from 'express';
-import { auth } from '../middlewares/authenticate.js'; // Importar middleware de autenticación
+import { auth } from '../../middlewares/validationResultExpress.js';// Importar middleware de autenticación
 import Controller from '../controllers/ListarModel.js'; // Importar controlador
 
 const list = express.Router();

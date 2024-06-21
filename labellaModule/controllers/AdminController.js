@@ -205,74 +205,6 @@ const newpassword = async function (req, res) {
     res.status(200).send({ message: "NoAccess" });
   }
 };
-const login_admin = async function (req, res) {
-  //listarArchivos.listarArchivos();
-  var data = req.body;
-  let admin = await Model.Usuario.find();
-
-  // Verificar si no hay usuarios, crear un rol y un usuario administrador predeterminado
-  if (admin.length === 0) {
-    // Crear un rol de administrador
-    const rol_arr = await Model.Rol_user.create({
-      nombre: "Administrador",
-      orden: 2,
-    });
-
-    // Crear un usuario administrador predeterminado
-    bcrypt.hash("123456789", null, null, async function (err, hash) {
-      if (hash) {
-        await Model.Usuario.create({
-          nombres: "Samuel Arévalo",
-          correo: "saamare99@gmail.com",
-          password: hash,
-          telefono: "0995767887",
-          cedula: "0803768530",
-          rol_user: rol_arr._id,
-          estado: "On",
-        });
-      }
-    });
-  }
-  try {
-    console.log(data);
-    const admin_arr = await Model.Usuario.find({
-      correo: data.correo,
-    }).populate("rol_user");
-    if (admin_arr.length != 0) {
-      let user = admin_arr[0];
-      if (user.estado != "Off") {
-        bcrypt.compare(
-          data.password,
-          user.password,
-          async function (error, check) {
-            if (check) {
-              res.status(200).send({
-                data: user,
-                token: '' ,
-                /*jwt.createToken(
-                  user,
-                  data.time || null,
-                  data.tipo || null
-                ),*/
-              });
-            } else {
-              //message= 'Las credenciales no coinciden'
-              res.status(400).send({ message: "Sin Coincidencia" });
-            }
-          }
-        );
-      } else {
-        //message= 'Su institución se encuentra Deshabilitada'
-        res.status(401).json({ message: "Credenciales Deshabilitadas" });
-      }
-    } else {
-      res.status(404).json({ message: "No Registrado" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "ERROR Server" });
-  }
-};
 
 const listar_registro = async function (req, res) {
   if (req.user) {
@@ -449,7 +381,6 @@ const Controller= {
   obtener_portada,
   newpassword,
   forgotpassword,
-  login_admin,
   listar_registro,
   verificar_token,
   obtener_portada_avatar,

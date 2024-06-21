@@ -93,13 +93,16 @@ const login = async function (data) {
         const check = await checkPassword;
 
         if (check) {
-          return apiResponse(
-            200,
-            (await mail_confirmar_session(data.email)) ||
-              "El Código de un solo uso será enviado pronto", //"Bienvenido.",
-            null, //createToken(admin_arr, data.time || null, data.tipo || null),
-            null
-          );
+          if(admin_arr.verificado){
+            return apiResponse(
+              200,
+              (await mail_confirmar_session(data.email)) ||
+                "El Código de un solo uso será enviado pronto", //"Bienvenido.",
+              null, //createToken(admin_arr, data.time || null, data.tipo || null),
+              null
+            );
+          }
+         
         } else {
           return apiResponse(400, "Sin Coincidencia.", null, error);
         }
